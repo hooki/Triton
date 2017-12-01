@@ -1,8 +1,12 @@
-FROM ubuntu:15.10
-MAINTAINER Pete Markowsky <pete@markowsky.us>
+FROM ubuntu:16.04
+MAINTAINER Jeongun.Baek <jeongun.baek@gmail.com>
+
+RUN sed -i 's/archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
+
 RUN apt-get update && apt-get dist-upgrade -y && \
     apt-get install -y git cmake build-essential clang ca-certificates curl \
     unzip libboost-dev python-dev python-pip && apt-get clean
+
 # get and install the latest z3 relesae
 RUN cd /tmp && \
     curl -o z3.tgz -L  https://github.com/Z3Prover/z3/archive/z3-4.4.1.tar.gz && \
